@@ -1,0 +1,65 @@
+[gd_scene load_steps=6 format=3 uid="uid://2iqlbfxjg4i5"]
+
+[ext_resource type="FontFile" uid="uid://clfu1jp4jt0xx" path="res://ASSETS/Fonts/Microserif.ttf" id="1_ka7tw"]
+[ext_resource type="PackedScene" uid="uid://c0yckov2phub8" path="res://Scenes/DaytimeIndicator.tscn" id="2_ust6i"]
+[ext_resource type="Texture2D" uid="uid://3whir1o3ynb2" path="res://ASSETS/Sprites/locust_counter.png" id="3_ye5qx"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_kxj6i"]
+font = ExtResource("1_ka7tw")
+font_size = 45
+
+[sub_resource type="LabelSettings" id="LabelSettings_bnopf"]
+font = ExtResource("1_ka7tw")
+font_size = 45
+
+[node name="Control" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_bottom = -704.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="LevelName" type="Label" parent="."]
+layout_mode = 0
+offset_left = 192.0
+offset_right = 616.0
+offset_bottom = 64.0
+text = "LEVEL 1"
+label_settings = SubResource("LabelSettings_kxj6i")
+autowrap_mode = 2
+
+[node name="MoveCounter" type="Label" parent="."]
+layout_mode = 0
+offset_left = 640.0
+offset_right = 1004.0
+offset_bottom = 55.0
+text = "3 MOVES UNTIL"
+label_settings = SubResource("LabelSettings_bnopf")
+horizontal_alignment = 2
+
+[node name="LocustCounter" type="Label" parent="."]
+layout_mode = 0
+offset_left = 288.0
+offset_top = 72.0
+offset_right = 576.0
+offset_bottom = 127.0
+text = "3"
+label_settings = SubResource("LabelSettings_bnopf")
+
+[node name="ScoreCounter" type="Label" parent="."]
+layout_mode = 0
+offset_left = 192.0
+offset_top = 136.0
+offset_right = 485.0
+offset_bottom = 191.0
+text = "SCORE"
+label_settings = SubResource("LabelSettings_bnopf")
+
+[node name="DaytimeIndicator" parent="." instance=ExtResource("2_ust6i")]
+position = Vector2(1056, 32)
+
+[node name="LocustCounterGraphic" type="Sprite2D" parent="."]
+position = Vector2(224, 96)
+texture = ExtResource("3_ye5qx")

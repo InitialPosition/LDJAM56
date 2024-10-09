@@ -1,0 +1,108 @@
+[gd_scene load_steps=13 format=3 uid="uid://ciutm8y54agoo"]
+
+[ext_resource type="FontFile" uid="uid://clfu1jp4jt0xx" path="res://ASSETS/Fonts/Microserif.ttf" id="1_ij6uh"]
+[ext_resource type="Script" path="res://Scripts/BackToMenuButton.gd" id="2_0aa5f"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_wp6kl"]
+font = ExtResource("1_ij6uh")
+font_size = 80
+
+[sub_resource type="LabelSettings" id="LabelSettings_mpmkw"]
+font = ExtResource("1_ij6uh")
+font_size = 70
+
+[sub_resource type="LabelSettings" id="LabelSettings_g27rp"]
+font = ExtResource("1_ij6uh")
+font_size = 60
+
+[sub_resource type="LabelSettings" id="LabelSettings_57y46"]
+font = ExtResource("1_ij6uh")
+font_size = 30
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_4rhfr"]
+size = Vector2(386, 58)
+
+[sub_resource type="Curve" id="Curve_u72ph"]
+_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(0.503226, 0.221005), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="CurveTexture" id="CurveTexture_5ihsm"]
+curve = SubResource("Curve_u72ph")
+
+[sub_resource type="Curve" id="Curve_g1n14"]
+max_value = 3.0
+_data = [Vector2(0, 0.135309), 0.0, 0.0, 0, 0, Vector2(1, 1.8692), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_md6i6"]
+curve = SubResource("Curve_g1n14")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_tuqu5"]
+particle_flag_disable_z = true
+emission_shape_scale = Vector3(6.71, 7.755, 1)
+emission_shape = 1
+emission_sphere_radius = 128.0
+orbit_velocity_min = -0.04
+orbit_velocity_max = 0.04
+gravity = Vector3(2.08165e-12, 2.08165e-12, 2.08165e-12)
+radial_accel_min = 2.08167e-15
+radial_accel_max = 2.08167e-15
+scale_max = 3.0
+scale_over_velocity_curve = SubResource("CurveTexture_md6i6")
+alpha_curve = SubResource("CurveTexture_5ihsm")
+
+[node name="GameOver" type="Node2D"]
+
+[node name="Caption" type="Label" parent="."]
+offset_left = 408.0
+offset_top = 208.0
+offset_right = 880.0
+offset_bottom = 304.0
+text = "GAME OVER!"
+label_settings = SubResource("LabelSettings_wp6kl")
+
+[node name="Stats" type="Label" parent="."]
+offset_left = 16.0
+offset_top = 368.0
+offset_right = 1272.0
+offset_bottom = 452.0
+text = "FINAL LEVEL: 100
+SCORE: 2"
+label_settings = SubResource("LabelSettings_mpmkw")
+horizontal_alignment = 1
+
+[node name="NewHighScore" type="Label" parent="."]
+visible = false
+offset_left = 384.0
+offset_top = 584.0
+offset_right = 906.0
+offset_bottom = 656.0
+text = "NEW HIGH SCORE!"
+label_settings = SubResource("LabelSettings_g27rp")
+
+[node name="MenuButton" type="Label" parent="."]
+offset_left = 456.0
+offset_top = 784.0
+offset_right = 828.0
+offset_bottom = 820.0
+text = "BACK TO MAIN MENU"
+label_settings = SubResource("LabelSettings_57y46")
+horizontal_alignment = 1
+
+[node name="Area2D" type="Area2D" parent="MenuButton"]
+script = ExtResource("2_0aa5f")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="MenuButton/Area2D"]
+position = Vector2(183, 19)
+shape = SubResource("RectangleShape2D_4rhfr")
+
+[node name="GPUParticles2D" type="GPUParticles2D" parent="."]
+position = Vector2(640, 448)
+amount = 200
+process_material = SubResource("ParticleProcessMaterial_tuqu5")
+lifetime = 4.0
+preprocess = 2.0
+fixed_fps = 60
+trail_lifetime = 2.14
+trail_sections = 12
+trail_section_subdivisions = 8

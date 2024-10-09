@@ -1,0 +1,24 @@
+[gd_scene load_steps=3 format=3 uid="uid://cc1mvgf6ry811"]
+
+[ext_resource type="FontFile" uid="uid://clfu1jp4jt0xx" path="res://ASSETS/Fonts/Microserif.ttf" id="1_okl3m"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_ptt8y"]
+font = ExtResource("1_okl3m")
+font_size = 45
+
+[node name="LvlComplete" type="Node2D"]
+
+[node name="Label" type="Label" parent="."]
+z_index = 5
+offset_left = 448.0
+offset_top = 448.0
+offset_right = 844.0
+offset_bottom = 503.0
+text = "LEVEL COMPLETE!"
+label_settings = SubResource("LabelSettings_ptt8y")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+z_index = 4
+offset_right = 1280.0
+offset_bottom = 960.0
+color = Color(0, 0, 0, 0.65098)

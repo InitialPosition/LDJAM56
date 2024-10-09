@@ -1,0 +1,11 @@
+[gd_scene load_steps=3 format=3 uid="uid://bhegsxkod0jn0"]
+
+[ext_resource type="AudioStream" uid="uid://d4cx4xopo22of" path="res://Sound/mus_main_theme.mp3" id="1_ymbod"]
+[ext_resource type="Script" path="res://Scripts/MusicPlayer.gd" id="2_o0v6c"]
+
+[node name="MusicScene" type="Node2D"]
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("1_ymbod")
+volume_db = -17.425
+script = ExtResource("2_o0v6c")

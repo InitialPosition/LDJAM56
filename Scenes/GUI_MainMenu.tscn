@@ -1,0 +1,104 @@
+[gd_scene load_steps=12 format=3 uid="uid://co11g76xu2upu"]
+
+[ext_resource type="FontFile" uid="uid://clfu1jp4jt0xx" path="res://ASSETS/Fonts/Microserif.ttf" id="1_xkqfc"]
+[ext_resource type="Script" path="res://Scripts/SelectorMenu.gd" id="2_i3as4"]
+[ext_resource type="Script" path="res://Scripts/SelectorMenuExit.gd" id="3_wgvx5"]
+[ext_resource type="Script" path="res://Scripts/SelectorMenuTutorial.gd" id="4_kowwf"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_j8v8d"]
+font = ExtResource("1_xkqfc")
+font_size = 50
+
+[sub_resource type="LabelSettings" id="LabelSettings_gfwe6"]
+font = ExtResource("1_xkqfc")
+font_size = 50
+
+[sub_resource type="LabelSettings" id="LabelSettings_5slo1"]
+font = ExtResource("1_xkqfc")
+font_size = 32
+
+[sub_resource type="LabelSettings" id="LabelSettings_4nkdv"]
+font = ExtResource("1_xkqfc")
+font_size = 80
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_gtawc"]
+size = Vector2(346, 50)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_00y3a"]
+size = Vector2(146, 48)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_5v6em"]
+size = Vector2(410, 42)
+
+[node name="GuiMainMenu" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="HighScore" type="Label" parent="."]
+visible = false
+layout_mode = 0
+offset_left = 8.0
+offset_top = 272.0
+offset_right = 1272.0
+offset_bottom = 332.0
+text = "if i had a high score this is where it would be"
+label_settings = SubResource("LabelSettings_j8v8d")
+horizontal_alignment = 1
+
+[node name="MenuText" type="Label" parent="."]
+layout_mode = 0
+offset_left = 120.0
+offset_top = 576.0
+offset_right = 704.0
+offset_bottom = 762.0
+text = "START GAME
+PLAY TUTORIAL
+EXIT"
+label_settings = SubResource("LabelSettings_gfwe6")
+
+[node name="CopyrightNotice" type="Label" parent="."]
+layout_mode = 0
+offset_left = 488.0
+offset_top = 888.0
+offset_right = 1535.0
+offset_bottom = 1074.0
+text = "Made in 48 hours for LDJAM56"
+label_settings = SubResource("LabelSettings_5slo1")
+horizontal_alignment = 1
+
+[node name="GameTitle" type="Label" parent="."]
+layout_mode = 0
+offset_left = 128.0
+offset_top = 192.0
+offset_right = 1152.0
+offset_bottom = 288.0
+text = "FIELD TRIP"
+label_settings = SubResource("LabelSettings_4nkdv")
+horizontal_alignment = 1
+
+[node name="Area2D" type="Area2D" parent="."]
+position = Vector2(112, 592)
+script = ExtResource("2_i3as4")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+position = Vector2(163, 15)
+shape = SubResource("RectangleShape2D_gtawc")
+
+[node name="Area2D2" type="Area2D" parent="."]
+position = Vector2(104, 712)
+script = ExtResource("3_wgvx5")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D2"]
+position = Vector2(72, 24)
+shape = SubResource("RectangleShape2D_00y3a")
+
+[node name="Area2D3" type="Area2D" parent="."]
+script = ExtResource("4_kowwf")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D3"]
+position = Vector2(307, 675)
+shape = SubResource("RectangleShape2D_5v6em")

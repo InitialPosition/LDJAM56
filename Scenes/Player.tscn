@@ -1,0 +1,118 @@
+[gd_scene load_steps=20 format=3 uid="uid://b0xvvhedhpptj"]
+
+[ext_resource type="Script" path="res://Scripts/Player.gd" id="1_2xflc"]
+[ext_resource type="Texture2D" uid="uid://dt27pqtr7jgvm" path="res://ASSETS/Sprites/Noise/frame_00_delay-0.05s.png" id="1_17l6e"]
+[ext_resource type="Texture2D" uid="uid://1wdr84hep0wr" path="res://ASSETS/Sprites/Noise/frame_01_delay-0.05s.png" id="2_no7ia"]
+[ext_resource type="Texture2D" uid="uid://dwuj52uvau7tj" path="res://ASSETS/Sprites/Noise/frame_02_delay-0.05s.png" id="3_lrrgc"]
+[ext_resource type="Texture2D" uid="uid://cfwtonfqmb55q" path="res://ASSETS/Sprites/Noise/frame_03_delay-0.05s.png" id="4_sucqi"]
+[ext_resource type="Texture2D" uid="uid://80b7hn4pkvv7" path="res://ASSETS/Sprites/Noise/frame_04_delay-0.05s.png" id="5_5auuj"]
+[ext_resource type="Texture2D" uid="uid://ddk412tn6lutc" path="res://ASSETS/Sprites/Noise/frame_05_delay-0.05s.png" id="6_25jci"]
+[ext_resource type="Texture2D" uid="uid://c5p27uv8kp3m6" path="res://ASSETS/Sprites/Noise/frame_06_delay-0.05s.png" id="7_l5fwx"]
+[ext_resource type="Texture2D" uid="uid://bof8viofv8aju" path="res://ASSETS/Sprites/Noise/frame_07_delay-0.05s.png" id="8_iyhxb"]
+[ext_resource type="Texture2D" uid="uid://bxqbp05j8p4lx" path="res://ASSETS/Sprites/Noise/frame_08_delay-0.05s.png" id="9_6duvi"]
+[ext_resource type="Texture2D" uid="uid://dv6s5bq28c053" path="res://ASSETS/Sprites/Noise/frame_09_delay-0.05s.png" id="10_2nk0q"]
+
+[sub_resource type="Curve" id="Curve_atodl"]
+_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(0.158065, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), -1.59794, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="CurveTexture" id="CurveTexture_isibo"]
+curve = SubResource("Curve_atodl")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_3pyem"]
+particle_flag_disable_z = true
+emission_shape = 3
+emission_box_extents = Vector3(60, 60, 1)
+spread = 35.414
+orbit_velocity_min = -0.05
+orbit_velocity_max = 0.05
+gravity = Vector3(2.08165e-12, 2.08165e-12, 2.08165e-12)
+color = Color(1, 0.976471, 0.921569, 1)
+alpha_curve = SubResource("CurveTexture_isibo")
+
+[sub_resource type="Curve" id="Curve_8g33y"]
+_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(0.180645, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="CurveTexture" id="CurveTexture_mykjx"]
+curve = SubResource("Curve_8g33y")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_8oy2a"]
+particle_flag_disable_z = true
+emission_shape = 3
+emission_box_extents = Vector3(60, 60, 1)
+angular_velocity_min = -189.26
+angular_velocity_max = 181.03
+gravity = Vector3(2.08165e-12, 2.08165e-12, 2.08165e-12)
+scale_min = 3.0
+scale_max = 3.0
+alpha_curve = SubResource("CurveTexture_mykjx")
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_d81x2"]
+size = Vector2(96, 96)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_tubvy"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_17l6e")
+}, {
+"duration": 1.0,
+"texture": ExtResource("2_no7ia")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_lrrgc")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_sucqi")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_5auuj")
+}, {
+"duration": 1.0,
+"texture": ExtResource("6_25jci")
+}, {
+"duration": 1.0,
+"texture": ExtResource("7_l5fwx")
+}, {
+"duration": 1.0,
+"texture": ExtResource("8_iyhxb")
+}, {
+"duration": 1.0,
+"texture": ExtResource("9_6duvi")
+}, {
+"duration": 1.0,
+"texture": ExtResource("10_2nk0q")
+}],
+"loop": true,
+"name": &"noise",
+"speed": 12.0
+}]
+
+[node name="Player" type="Node2D"]
+script = ExtResource("1_2xflc")
+
+[node name="GPUParticles2D" type="GPUParticles2D" parent="."]
+amount = 50
+process_material = SubResource("ParticleProcessMaterial_3pyem")
+trail_lifetime = 0.08
+trail_sections = 23
+trail_section_subdivisions = 9
+
+[node name="GPUParticles2D2" type="GPUParticles2D" parent="."]
+amount = 100
+process_material = SubResource("ParticleProcessMaterial_8oy2a")
+
+[node name="Area2D" type="Area2D" parent="."]
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+shape = SubResource("RectangleShape2D_d81x2")
+
+[node name="Noise" type="AnimatedSprite2D" parent="."]
+modulate = Color(0.00784314, 0.00784314, 0.00784314, 1)
+z_index = -4
+position = Vector2(638, 480)
+scale = Vector2(2.14, 2.4)
+sprite_frames = SubResource("SpriteFrames_tubvy")
+animation = &"noise"

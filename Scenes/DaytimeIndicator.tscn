@@ -1,0 +1,23 @@
+[gd_scene load_steps=4 format=3 uid="uid://c0yckov2phub8"]
+
+[ext_resource type="Texture2D" uid="uid://db4bygoy4hmcf" path="res://ASSETS/Sprites/daytime_indicator1.png" id="1_hvs4c"]
+[ext_resource type="Texture2D" uid="uid://bq6t3xlsovrmm" path="res://ASSETS/Sprites/daytime_indicator2.png" id="2_hpm20"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_nq3hu"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_hvs4c")
+}, {
+"duration": 1.0,
+"texture": ExtResource("2_hpm20")
+}],
+"loop": true,
+"name": &"default",
+"speed": 0.0
+}]
+
+[node name="DaytimeIndicator" type="Node2D"]
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_nq3hu")
