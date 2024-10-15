@@ -35,8 +35,8 @@ func do_move():
 	self.global_position = round(self.global_position)
 	var current_position = self.target_pos
 
-	var player = get_parent().get_node("Player")
-	var player_position = player.global_position
+	var player_object = get_parent().get_node("Player")
+	var player_position = player_object.global_position
 	
 	var smallest_distance = INF
 	var best_movement_vector = null

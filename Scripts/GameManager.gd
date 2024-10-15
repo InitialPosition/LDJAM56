@@ -31,3 +31,13 @@ func load_score():
 	if file != null:
 		self.high_score = file.get_var()
 		file.close()
+
+func reset_stats():
+	health = 3
+	level = 1
+	score = 0
+	field_width = 5
+	crop_probability = 20
+	bird_level = 1
+	forbidden_crop_indices = [2]
+	rng_seed = randi()

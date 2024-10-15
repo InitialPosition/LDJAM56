@@ -9,21 +9,18 @@ var sprite
 var sprite_width
 var sprite_height
 const TILE_SIZE = 128
-var game_manager
 
 
 func _ready():
 	rng.seed = hash(GameManager.rng_seed)
 
-	game_manager = get_parent().get_node("GameManager")
-
 	var field_width = GameManager.field_width
 	var field_height = 5
 
 	# move to center of game screen
-	var screen_width = get_viewport().size.x
+	var screen_size = get_viewport().get_visible_rect().size
 	var total_field_width = (field_width - 1) * TILE_SIZE
-	var centered_x = (screen_width - total_field_width) / 2
+	var centered_x = (screen_size.x - total_field_width) / 2
 	self.position = Vector2(centered_x, TILE_SIZE)
 
 	if GameManager.bird_level == 1:
@@ -68,29 +65,30 @@ func _ready():
 
 # generate a playing field.
 func generate_field(field_width, field_height):
-	rng.seed = hash(GameManager.rng_seed)
-
 	GameManager.crop_count = 0
+	
+	while GameManager.crop_count == 0:
+		rng.seed = hash(GameManager.rng_seed)
 
-	var spawn_field = ceil((GameManager.field_width * field_height) / 2)
-	var counter = 0
+		var spawn_field = ceil((GameManager.field_width * field_height) / 2)
+		var counter = 0
 
-	for row in range(field_height):
-		for col in range(field_width):
-			var tile = Tile.instantiate()
+		for row in range(field_height):
+			for col in range(field_width):
+				var tile = Tile.instantiate()
 
-			# calculate tile position
-			var tile_x = get_parent().position.x + TILE_SIZE * col
-			var tile_y = get_parent().position.y + TILE_SIZE * row
-			tile.position = Vector2(tile_x, tile_y)
-			
-			# if tile is determined to be a field, change, otherwise add decor
-			if rng.randi() % 100 <= GameManager.crop_probability and counter != spawn_field and counter not in GameManager.forbidden_crop_indices:
-				tile.get_node("Sprite2D_Crop").visible = true
-				GameManager.crop_count += 1
-			
-			# add the tile to the field as a child
-			add_child(tile)
+				# calculate tile position
+				var tile_x = TILE_SIZE * col
+				var tile_y = TILE_SIZE * row
+				tile.global_position = Vector2(tile_x, tile_y)
 
-			# increment counter
-			counter += 1
+				# if tile is determined to be a field, change, otherwise add decor
+				if rng.randi() % 100 <= GameManager.crop_probability and counter != spawn_field and counter not in GameManager.forbidden_crop_indices:
+					tile.get_node("Sprite2D_Crop").visible = true
+					GameManager.crop_count += 1
+
+				# add the tile to the field as a child
+				add_child(tile)
+
+				# increment counter
+				counter += 1
