@@ -11,7 +11,7 @@ config_version=5
 [application]
 
 config/name="Field Trip"
-config/version="1.0.2"
+config/version="1.0.4"
 run/main_scene="res://Scenes/MenuScreen.tscn"
 config/features=PackedStringArray("4.3", "Forward Plus")
 boot_splash/show_image=false
@@ -40,6 +40,7 @@ mouse_click={
 
 [rendering]
 
+textures/vram_compression/import_etc2_astc=true
 environment/defaults/default_clear_color=Color(0, 0, 0, 1)
 
 [shader_globals]

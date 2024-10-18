@@ -1,4 +1,4 @@
-[gd_scene load_steps=18 format=3 uid="uid://cyt23tohavofd"]
+[gd_scene load_steps=20 format=3 uid="uid://cyt23tohavofd"]
 
 [ext_resource type="PackedScene" uid="uid://co11g76xu2upu" path="res://Scenes/GUI_MainMenu.tscn" id="2_27r3t"]
 [ext_resource type="Texture2D" uid="uid://dt27pqtr7jgvm" path="res://ASSETS/Sprites/Noise/frame_00_delay-0.05s.png" id="3_j0nhn"]
@@ -10,6 +10,7 @@
 [ext_resource type="Texture2D" uid="uid://c5p27uv8kp3m6" path="res://ASSETS/Sprites/Noise/frame_06_delay-0.05s.png" id="9_vswcb"]
 [ext_resource type="Texture2D" uid="uid://bof8viofv8aju" path="res://ASSETS/Sprites/Noise/frame_07_delay-0.05s.png" id="10_uibxw"]
 [ext_resource type="Texture2D" uid="uid://bxqbp05j8p4lx" path="res://ASSETS/Sprites/Noise/frame_08_delay-0.05s.png" id="11_ruxy7"]
+[ext_resource type="FontFile" uid="uid://clfu1jp4jt0xx" path="res://ASSETS/Fonts/Microserif.ttf" id="12_0dr77"]
 [ext_resource type="Texture2D" uid="uid://dv6s5bq28c053" path="res://ASSETS/Sprites/Noise/frame_09_delay-0.05s.png" id="12_7hsvv"]
 
 [sub_resource type="Curve" id="Curve_ow28q"]
@@ -79,6 +80,10 @@ animations = [{
 "speed": 12.0
 }]
 
+[sub_resource type="LabelSettings" id="LabelSettings_0aopa"]
+font = ExtResource("12_0dr77")
+font_size = 32
+
 [node name="MenuScreen" type="Node2D"]
 
 [node name="GuiMainMenu" parent="." instance=ExtResource("2_27r3t")]
@@ -105,3 +110,11 @@ position = Vector2(638, 480)
 scale = Vector2(2.14, 2.4)
 sprite_frames = SubResource("SpriteFrames_moiir")
 animation = &"noise"
+
+[node name="VersionString" type="Label" parent="."]
+offset_left = 16.0
+offset_top = 904.0
+offset_right = 150.0
+offset_bottom = 943.0
+text = "v. 1.x.x"
+label_settings = SubResource("LabelSettings_0aopa")

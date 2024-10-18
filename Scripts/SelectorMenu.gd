@@ -11,6 +11,8 @@ func _ready():
 	if !music.is_playing():
 		MusicPlayer.get_node("AudioStreamPlayer").play()
 
+	get_parent().get_parent().get_node("VersionString").text = "v. " + str(ProjectSettings.get_setting("application/config/version"))
+
 	active = false
 
 

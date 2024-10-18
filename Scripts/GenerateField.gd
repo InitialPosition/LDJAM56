@@ -92,3 +92,10 @@ func generate_field(field_width, field_height):
 
 				# increment counter
 				counter += 1
+
+		if GameManager.crop_count == 0:
+			# game did not generate a field, increment random seed, clear field and try again
+			GameManager.rng_seed += 1
+
+			for current_tile in get_tree().get_nodes_in_group("tiles"):
+				current_tile.queue_free()
